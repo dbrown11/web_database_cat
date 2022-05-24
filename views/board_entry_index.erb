@@ -1,0 +1,13 @@
+<%if board_entries.empty?%>
+  There are no lost cats :D
+<%else%>
+  <%board_entries.each do |entry|%>
+    <article>
+      <h1><%= entry.number %></h1>
+      <p><%= entry.description %></h2>
+    </article>
+  <%end%>
+<%end%>
+
+<a href="/board/new">Add entry</a>
+
