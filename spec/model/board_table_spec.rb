@@ -10,13 +10,15 @@ RSpec.describe BoardTable do
 
   it "start with an empty table" do
     db = clean_and_get_database
-    board_table = BoardTable.new(db)
+    comment_table = CommentList.new(db)
+    board_table = BoardTable.new(db, comment_table)
     expect(board_table.list).to eq([])
   end
 
   it "adds entry and lists them out again" do
     db = clean_and_get_database
-    board_table = BoardTable.new(db)
+    comment_table = CommentList.new(db)
+    board_table = BoardTable.new(db, comment_table)
     board_entry = BoardEntryEntity.new("07982632652", "Ginger cat")
     board_table.add(board_entry)
 

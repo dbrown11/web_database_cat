@@ -1,0 +1,21 @@
+<h1>Edit Entry</h1>
+
+<form action="/board/<%=board_entry_entity.id%>" method="POST" >  
+
+  <input type="hidden" name="_method" value="PATCH">
+
+    <p>
+      <label for="number">number</label>
+      <br>
+      <input type="text" id="number" name="number" value="<%= board_entry_entity.number %>">
+    </p>
+
+
+    <p>
+      <label for="description">description</label>
+      <br>
+      <input type="text" id=description" name="description" value="<%= board_entry_entity.description %>">
+    </p>
+
+  <input type="submit" value="Update entry">
+</form>

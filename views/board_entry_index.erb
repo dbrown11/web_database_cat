@@ -1,12 +1,32 @@
+<h1> Lost car postings </h1>
+
 <%if board_entries.empty?%>
   There are no lost cats :D
 <%else%>
+
   <%board_entries.each do |entry|%>
+
     <article>
+
       <h1><%= entry.number %></h1>
       <p><%= entry.description %></h2>
+
+      <p>
+        <a href="/board/<%= entry.id %>/edit" id="edit_board_<%=entry.number%>">
+          <button>Edit</button>
+        </a>
+      </p>
+
+      <form action="/board/<%= entry.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE" >
+        <button id="delete_<%=entry.number%>">Delete</button>
+      </form>
+
     </article>
+
+
   <%end%>
+
 <%end%>
 
 <a href="/board/new">Add entry</a>

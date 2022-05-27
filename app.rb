@@ -10,6 +10,9 @@ require "animal_entity"
 
 require "board_entry_entity"
 require "board_table"
+require "comment_table"
+require "comment_entity"
+
 
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
@@ -35,8 +38,12 @@ class WebApplicationServer < Sinatra::Base
     $global[:animals_table] ||= AnimalsTable.new($global[:db])
   end
 
+  def comment_table
+    $global[:comment_table] ||= CommentList.new($global[:db])
+  end
+
   def board
-    $global[:board] ||= BoardTable.new($global[:db])
+    $global[:board] ||= BoardTable.new($global[:db], comment_table)
   end
 
   # Start your server using `rackup`.
@@ -46,6 +53,7 @@ class WebApplicationServer < Sinatra::Base
 
   get '/board' do
     board_entries = board.list
+    # p board_entries
     erb :board_entry_index, locals: {
       board_entries: board_entries
     }
@@ -61,7 +69,34 @@ class WebApplicationServer < Sinatra::Base
     redirect '/board'
   end
 
+  delete '/board/:index' do
+    board.remove(params[:index].to_i)
+    redirect '/board'
+  end
+
+  get '/board/:index/edit' do
+    board_entry_index = params[:index].to_i
+    erb :board_edit, locals: {
+      index: board_entry_index,
+      board_entry_entity: board.get(board_entry_index)
+    }
+  end
+
+  patch '/board/:index' do
+    board_entry_index = params[:index].to_i
+    board.update(board_entry_index, params[:number],params[:description])
+    redirect '/board'
+  end
+  
+#### in progress
+
   #### EXAMPLE ROUTES
+#   ' ' '
+#
+#
+#
+#
+
 
   get '/animals' do
     erb :animals_index, locals: { animals: animals_table.list }

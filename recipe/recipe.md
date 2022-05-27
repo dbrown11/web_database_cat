@@ -4,6 +4,24 @@
 
 _Put or write the user stories here. Add any clarifying notes you might have._
 
+Stage One
+As a user
+So that I can find my cat that I lost
+I want to post an advert for a lost cat with some description of the cat, and my telephone number so people can contact me
+
+As a user
+So that I can help others find their lost cats
+I want to see all of the lost cat adverts
+
+Stage Two
+As a user
+So that I can focus on the yet not-found cats
+I want to delete adverts for cats that have been found
+
+As a user
+So that I can update lost cat adverts with potential sightings
+I want to update adverts
+
 ## 2. Design the Interface
 
 _This is the fun part! Use excalidraw.com or a similar tool to design some
@@ -67,8 +85,25 @@ click button "Post"
 # I had a very bad day.
 # A beautiful day
 # I had a very nice day it's true.
-```
 
+
+# mutiple signtings on one post 
+visit "/diary"
+click link "Add Entry"
+enter "A beautiful day" into "Title" field
+enter "I had a very nice day it's true." into "Contents" field
+click button "Post"
+click link "Add Entry"
+enter "A bad day" into "Title" field
+enter "I had a very bad day." into "Contents" field
+click button "Post"
+
+click_link "add_signting_07364543611"
+fill_in "sighting", with: "I saw it in Mateusz house"
+click_button "Add signting"
+
+
+```
 ## 6. Test-Drive the Behaviour
 
 _Follow this cycle:_

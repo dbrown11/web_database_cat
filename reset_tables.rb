@@ -12,6 +12,12 @@ def reset_tables(db)
   db.run("DROP TABLE IF EXISTS board_entries;")
   db.run("CREATE TABLE board_entries (id SERIAL PRIMARY KEY, number TEXT NOT NULL, description TEXT NOT NULL);")
 
+  db.run("DROP TABLE IF EXISTS comments;")
+  db.run("CREATE TABLE comments (
+        id_comment SERIAL PRIMARY KEY,
+        comment TEXT NOT NULL,
+        id_advert INTEGER NOT NULL);")
+
   # Add your table creation SQL here
   # Each one should be a pair of lines:
   #   db.run("DROP TABLE IF EXISTS ...;")
